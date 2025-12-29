@@ -1,0 +1,40 @@
+"""
+algorithm ProfessionalKeyGenerator
+
+input:
+  salt (varsayılan: "ozel_tuz_degeri")
+
+class:ProfessionalKeyGenerator
+  attribute:
+    salt
+
+  fonction init(salt_degeri):
+    salt ← salt_degeri
+
+  fonction generate_secure_key(length = 32) → string:
+
+   
+       random_bytes ← 64 bayt kriptografik rastgele veri üret
+
+       timestamp ← şu anki zamanı nanosaniye hassasiyetinde al
+       timestamp_bytes ← timestamp'i byte formatına çevir
+ 
+       salt_bytes ← salt'i byte formatına çevir
+       hash_input ← random_bytes + timestamp_bytes + salt_bytes
+       secure_hash ← SHA-256(hash_input)   (sonuç: 32 bayt)
+    
+       key_text ← secure_hash'i URL-safe Base64 metnine çevir
+
+       output_key ← key_text'in ilk 'length' karakterini al
+
+    return output_key
+
+
+main:
+  generator ← ProfessionalKeyGenerator("sirket_projesi_v1")
+  new_key ← generator.generate_secure_key(24)
+
+  "Güvenli Anahtar" yazdır
+  "Key: " + new_key yazdır
+  "Uzunluk: " + new_key'nin karakter sayısı yazdır
+"""

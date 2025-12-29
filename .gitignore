@@ -1,0 +1,10 @@
+# Sadece gizli olanı engelle
+.env
+
+# Sanal ortamları engelle (gereksiz yük olmasın diye)
+venv/
+env/
+.venv/
+
+# Python gereksiz dosyaları
+__pycache__/
